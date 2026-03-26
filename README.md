@@ -1,75 +1,98 @@
-# Olympic Medal Data Visualization
+# Olympic Medals Analysis: Paris 2024 vs Tokyo 2020
+
+A data analysis project comparing Olympic medal standings across two consecutive Summer Games.
+The goal is to identify which nations dominated, which improved, and how global medal share is distributed.
+
+---
 
 ## Overview
 
-This project involves visualizing Olympic medal data from the Tokyo 2020 and Paris 2024 Olympics. The primary goal is to analyze and present the distribution of medals among participating countries, focusing on understanding trends and comparing performance across different games. The project includes various visualizations, such as pie charts and bar charts, to provide insights into medal counts and country trajectories.
+| | Tokyo 2020 | Paris 2024 |
+|---|---|---|
+| Held | July–August 2021 | July–August 2024 |
+| Nations with medals | 88 | 90 |
+| Total medals awarded | ~1,080 | ~1,117 |
 
-## Project Features
+The two datasets are merged on country name, cleaned, and explored through five distinct visualisations.
 
-- **Data Analysis:** Clean and merge Olympic medal data from Tokyo 2020 and Paris 2024.
-- **Visualizations:**
-  - Pie chart showing the distribution of medals among the top 20 countries and the "Others" category.
-  - Bar charts illustrating the top countries with the most significant upward and downward changes in medal counts.
-  - Additional charts and analyses to further explore the data.
+---
 
-## Setup
+## Analyses
+
+1. **Top 10 countries by combined medals** — stacked bar chart (Tokyo vs Paris share)
+2. **Medal trajectory** — horizontal bar chart for all countries (Paris − Tokyo change)
+3. **Top 5 risers and fallers** — focused view of the biggest movers
+4. **Gold medal comparison** — grouped bar chart for top 15 countries
+5. **Global medal share** — pie chart of top 20 countries vs the rest of the world
+
+---
+
+## Repository Structure
+
+```
+Olympics-Medals-Paris-Tokyo/
+├── data/
+│   ├── paris_2024_medals.csv   # Paris 2024 final medal table
+│   └── tokyo_2020_medals.csv   # Tokyo 2020 final medal table
+├── olympics_medals_analysis.ipynb
+├── requirements.txt
+├── LICENSE
+└── README.md
+```
+
+---
+
+## Getting Started
 
 ### Prerequisites
 
-Make sure you have the following Python packages installed:
+Python 3.8 or higher is required. Install dependencies with:
 
-- `pandas`
-- `matplotlib`
-- `seaborn`
-
-You can install these packages using pip:
-
-```
-pip install pandas matplotlib seaborn
+```bash
+pip install -r requirements.txt
 ```
 
-## Data Files
-This project requires two datasets:
+### Run the notebook
 
-- **df_paris.csv**: Contains medal data for the Paris 2024 Olympics.
-- **df_tokyo.csv**: Contains medal data for the Tokyo 2020 Olympics.
-
-Ensure these files are available in the same directory as your Jupyter Notebook or provide the correct path to these files.
-
-## Usage
-
-### Data Preparation:
-
-The datasets are loaded and cleaned to standardize country names and merge data from both Olympics.
-Russia is excluded from certain analyses due to data unavailability.
-Data Visualization:
-
-A pie chart is created to show the distribution of medals among the top 20 countries and the "Others" category.
-Bar charts are used to display the countries with the most significant upward and downward trajectories in medal counts.
-Running the Notebook
-Open the Jupyter Notebook file (your_notebook.ipynb) and run the cells sequentially to execute the data preparation and visualization steps.
-
+```bash
+jupyter notebook olympics_medals_analysis.ipynb
 ```
-jupyter notebook your_notebook.ipynb
-```
-Replace your_notebook.ipynb with the name of your Jupyter Notebook file.
 
-### Code Explanation
-Data Cleaning and Merging
-Data Loading: The df_paris and df_tokyo datasets are loaded and processed.
-Column Renaming: Column names are standardized for consistency.
-Country Name Matching: Country names are unified to handle discrepancies.
+Or open it in VS Code, JupyterLab, or any compatible environment.
 
-### Visualization
-**Pie Chart:** Displays the total medal distribution among the top 20 countries and "Others".
-Includes both absolute medal counts and percentages.
+---
 
-**Bar Charts:** Show the top countries with the most significant changes in medal counts between Tokyo 2020 and Paris 2024.
-Adjustments are made for readability and clarity.
-Important Notes
-Russia Data Exclusion: Russia's data is omitted from certain visualizations due to sanctions impacting the availability of data.
+## Data Notes
 
-## Contributions
-Feel free to contribute to this project by submitting issues, suggestions, or pull requests. All contributions are welcome!
+- **Russia (ROC)**: Competed at Tokyo 2020 as the Russian Olympic Committee due to doping sanctions.
+  Russia did not compete at Paris 2024. Trajectory calculations exclude Russia.
+- **Country name normalisation**: Several countries use different official names across the two datasets
+  (e.g. "People's Republic of China" vs "China"). A mapping dictionary in the notebook unifies them.
+- **Missing values**: Countries that did not participate in one of the Games are treated as 0 medals
+  for that edition when calculating combined totals.
 
+---
 
+## Key Findings
+
+- The **United States** and **China** were the top two nations in both editions.
+- **Australia**, **France** (host), and **Great Britain** all showed strong performances in Paris 2024.
+- Several smaller nations — including those in Central Asia and Africa — showed notable upward trajectories.
+- The top 20 countries account for roughly **75–80%** of all medals awarded across both Games.
+
+---
+
+## Tech Stack
+
+| Tool | Purpose |
+|---|---|
+| pandas | Data loading, cleaning, and merging |
+| matplotlib | Charts and visualisations |
+| seaborn | Colour palettes and plot styling |
+| Jupyter | Interactive notebook environment |
+
+---
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE).
